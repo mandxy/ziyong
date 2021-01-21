@@ -33,6 +33,10 @@ jobs:
       - name: npm install
         run: |
           npm install
+      - name: '安装环境'
+        run: npm install got 
+      - name: '安装环境'
+        run: npm install tough-cookie
       - name: '运行 【今日头条极速版】'
         run: |
           node jrtt.js
