@@ -1,44 +1,30 @@
 /*
-
-转载给我留个名字，谢谢
-邀请码：1425840898
-我的--输入邀请码，立得一元，直接提现，谢谢
-
-目前包含：
-签到
-开首页宝箱
-读文章30篇（具体效果自测）
-开农场宝箱
-农场浇水
-done 农场离线奖励(农场宝箱开完后，需要进农场再运行脚本才能开，有点问题)
-##通过农场浇水激活上线，达到获取理想奖励目的，目前测试每天的离线奖励足够开启农场5个宝箱，不需要做其他任务，具体情况看后期是否需要，再添加除虫，开地，施肥，三餐奖励以及农场签到活动
-20点睡觉，获取完全后（3600）或睡觉12小时，自动醒来（防止封号）
-自动收取睡觉金币
-脚本初成，非专业人士制作，欢迎指正
-#右上角签到即可获取签到cookie
-#进一次农场即可获取农场cookie
-#读文章弹出金币获取读文章cookie
+获取CK： 签到  ---   进农场  ----阅读文章
 [mitm]
 hostname = api3-normal-c-*.snssdk.com
 #圈x
 [rewrite local]
-^https:\/\/api3-normal-c-\w+\.snssdk\.com\/score_task\/v1\/task\/(sign_in|get_read_bonus) url script-request-header https://raw.githubusercontent.com/ZhiYi-N/Private-Script/master/Scripts/jrtt.js
-^https:\/\/api3-normal-c-\w+\.snssdk\.com\/ttgame\/game_farm\/home_info url script-request-header https://raw.githubusercontent.com/ZhiYi-N/Private-Script/master/Scripts/jrtt.js
+^https:\/\/api3-normal-c-\w+\.snssdk\.com\/score_task\/v1\/task\/(sign_in|get_read_bonus) url script-request-header https://raw.githubusercontent.com/mandxy/ziyong/main/jrtt.js
+^https:\/\/api3-normal-c-\w+\.snssdk\.com\/ttgame\/game_farm\/home_info url script-request-header https://raw.githubusercontent.com/mandxy/ziyong/main/jrtt.js
 [task]
-5,35 8-23 * * * https://raw.githubusercontent.com/mandxy/ziyong/jrtt.js, tag=今日头条极速版, enabled=true
+5,35 8-23 * * * https://raw.githubusercontent.com/mandxy/ziyong/main/jrtt.js, tag=今日头条极速版, enabled=true
+
 #loon
-http-request ^https:\/\/api3-normal-c-\w+\.snssdk\.com\/score_task\/v1\/task\/(sign_in|get_read_bonus) script-path=https://raw.githubusercontent.com/ZhiYi-N/Private-Script/master/Scripts/jrtt.js, requires-body=true, timeout=10, tag=今日头条极速版sign
-http-request ^https:\/\/api3-normal-c-\w+\.snssdk\.com\/ttgame\/game_farm\/home_info script-path=https://raw.githubusercontent.com/ZhiYi-N/Private-Script/master/Scripts/jrtt.js, requires-body=true, timeout=10, tag=今日头条极速版farm
-cron "5,35 8-23 * * *" script-path=https://raw.githubusercontent.com/mandxy/ziyong/jrtt.js, tag=今日头条极速版
+http-request ^https:\/\/api3-normal-c-\w+\.snssdk\.com\/score_task\/v1\/task\/(sign_in|get_read_bonus) script-path=https://raw.githubusercontent.com/mandxy/ziyong/main/jrtt.js, requires-body=true, timeout=10, tag=今日头条极速版sign
+http-request ^https:\/\/api3-normal-c-\w+\.snssdk\.com\/ttgame\/game_farm\/home_info script-path=https://raw.githubusercontent.com/mandxy/ziyong/main/jrtt.js, requires-body=true, timeout=10, tag=今日头条极速版farm
+cron "5,35 8-23 * * *" script-path=https://raw.githubusercontent.com/mandxy/ziyong/main/jrtt.js, tag=今日头条极速版
+
 #surge
-jrttsign = type=http-request,pattern=^https:\/\/api3-normal-c-\w+\.snssdk\.com\/score_task\/v1\/task\/(sign_in|get_read_bonus),requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/ZhiYi-N/Private-Script/master/Scripts/jrtt.js,script-update-interval=0
-jrttfarm = type=http-request,pattern=^https:\/\/api3-normal-c-\w+\.snssdk\.com\/ttgame\/game_farm\/home_info,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/ZhiYi-N/Private-Script/master/Scripts/jrtt.js,script-update-interval=0
-jrtt = type=cron,cronexp="5,35 8-23 * * *",wake-system=1,script-path=https://raw.githubusercontent.com/mandxy/ziyong/jrtt.js,script-update-interval=0
+
+jrttsign = type=http-request,pattern=^https:\/\/api3-normal-c-\w+\.snssdk\.com\/score_task\/v1\/task\/(sign_in|get_read_bonus),requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/mandxy/ziyong/main/jrtt.js,script-update-interval=0
+jrttfarm = type=http-request,pattern=^https:\/\/api3-normal-c-\w+\.snssdk\.com\/ttgame\/game_farm\/home_info,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/mandxy/ziyong/main/jrtt.js,script-update-interval=0
+jrtt = type=cron,cronexp="5,35 8-23 * * *",wake-system=1,script-path=https://raw.githubusercontent.com/mandxy/ziyong/main/jrtt.js,script-update-interval=0
+
 */
 const jsname='今日头条极速版'
 const $ = Env(jsname)
 const notify = $.isNode() ?require('./sendNotify') : '';
-$.idx = ($.idx = ($.getval("jrttcount") || "1") - 1) > 0 ? `${$.idx + 1}` : ""; // 账号扩展字符
+$.idx = ($.idx = ($.getval("jrttcount") || "1") - 1) > 0 ? `${$.idx + 1}` : ""; 
 const signurlArr = [],signkeyArr=[]
 const farmurlArr = [],farmkeyArr=[]
 const readurlArr = [],readkeyArr=[]
@@ -50,9 +36,9 @@ let farmkey = $.getdata('farmkey')
 
 let readurl = $.getdata('readurl')
 let readkey = $.getdata('readkey')
-//var articles =''
+
 let tz = ($.getval('tz') || '1');//0关闭通知，1默认开启
-const invit=1;//新用户自动邀请，0关闭，1默认开启
+const invit=1;
 const logs =0;//0为关闭日志，1为开启
 var coins=''
 var article =''
@@ -228,25 +214,25 @@ function GetCookie() {
     if (farmurlVal) $.setdata(farmurlVal,
 `farmurl${$.idx}`)
     $.log(`[${jsname}] 获取farm请求: 成功,farmirlVal: ${farmurl}`)
-    $.msg(`获取farmurl: 成功🎉`, ``)
+    $.msg(`获取farmurl: OK`, ``)
    const jrttfarmKey = JSON.stringify($request.headers)
 $.log(jrttfarmKey)
   if(jrttfarmKey)        $.setdata(jrttfarmKey,`farmkey${$.idx}`)
     $.log(`[${jsname + $.idx}] 获取farm请求: 成功,jrttfarmKey: ${farmkey}`)
-    $.msg(`获取farmkey: 成功🎉`, ``)
+    $.msg(`获取farmkey: OK`, ``)
 }
   if($request&&$request.url.indexOf("sign_in")>=0) {
   const signurlVal = $request.url.split(`?`)[1]
     if (signurlVal) $.setdata(signurlVal,
 `signurl${$.idx}`)
     $.log(`[${jsname + $.idx}] 获取sign请求: 成功,signurlVal: ${signurl}`)
-    $.msg(`获取signurl: 成功🎉`, ``)
+    $.msg(`获取signurl: OK`, ``)
    const jrttsignKey = JSON.stringify($request.headers)
 //$.log(jrttsignKey)
   if(jrttsignKey.indexOf("STUB")>=0)
     $.setdata(jrttsignKey,`signkey${$.idx}`)
     $.log(`[${jsname + $.idx}] 获取sign请求: 成功,jrttsignKey: ${signkey}`)
-    $.msg(`获取signkey: 成功🎉`, ``)
+    $.msg(`获取signkey: OK`, ``)
 }
 
 if($request&&$request.url.indexOf("get_read_bonus")>=0) {
@@ -260,12 +246,12 @@ if($request&&$request.url.indexOf("get_read_bonus")>=0) {
     if (readurlVal) $.setdata(readurlVal,
 `readurl${$.idx}`)
     $.log(`[${jsname + $.idx}] 获取read请求: 成功,readurlVal: ${readurl}`)
-    $.msg(`获取readurl: 成功🎉`, ``)
+    $.msg(`获取readurl: OK`, ``)
    const jrttreadKey = JSON.stringify($request.headers)
 $.log(jrttreadKey)
   if(jrttreadKey)        $.setdata(jrttreadKey,`readkey${$.idx}`)
     $.log(`[${jsname}] 获取read请求: 成功,jrttreadKey: ${readkey}`)
-    $.msg(`获取readkey: 成功🎉`, ``)
+    $.msg(`获取readkey: OK`, ``)
     }
   }
 function sign_in() {
