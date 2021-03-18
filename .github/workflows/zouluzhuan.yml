@@ -1,4 +1,4 @@
-name: 今日头条
+name: 走路赚
 
 on:
   workflow_dispatch:
