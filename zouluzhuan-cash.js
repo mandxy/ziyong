@@ -71,6 +71,8 @@ const txkeyArr = [txkey1,txkey2,txkey3,txkey4,txkey5];
 let txkeyVal = "";
 
 
+let usercash = 0;
+
 //////////////////////////////////////////////////////////////////
 
 !(async () => {
@@ -129,7 +131,7 @@ async function runstepcash() {
   console.log(`\n🇨🇳【开始提现任务】`)
   $.log('👩‍⚕️提现策略:\n账户金额大于50元,优先提现50元,否则提现1元。\n')
   console.log(hour)
-  if (0 == 0) {
+  if (hour == 0) {
     await cash()
   } else {
     $.log(`👧每天提现为：凌晨零点,中午12点,下午5点...请自行设置定时，或者手动执行！\n`)
