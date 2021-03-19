@@ -129,7 +129,7 @@ async function runstepcash() {
   console.log(`\n🇨🇳【开始提现任务】`)
   $.log('👩‍⚕️提现策略:\n账户金额大于50元,优先提现50元,否则提现1元。\n')
   console.log(hour)
-  if (hour == 0) {
+  if (0 == 0) {
     await cash()
   } else {
     $.log(`👧每天提现为：凌晨零点,中午12点,下午5点...请自行设置定时，或者手动执行！\n`)
@@ -159,7 +159,7 @@ async function myself() {
             data = JSON.parse(data);
             userjkb = data.data.user_detail.jkb
             userstep = data.data.user_detail.step
-            usercash = data.data.user.money
+            usercash = data.data.user.money || 0;
             $.log(`\n👤用户信息`);
             $.log(`【用户名】:${data.data.user.nickname}`);
             $.log(`【余额】:¥${data.data.user.money}`);
