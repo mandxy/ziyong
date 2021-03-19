@@ -128,7 +128,7 @@ async function runstepcash() {
   await txlog()
   console.log(`\n🇨🇳【开始提现任务】`)
   $.log('👩‍⚕️提现策略:\n账户金额大于50元,优先提现50元,否则提现1元。\n')
-  console.log(hour-minute)
+  console.log(hour +'--'+ minute)
   if (hour == 0 || hour == 12 || hour == 17) {
     await cash()
   } else {
