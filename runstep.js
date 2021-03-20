@@ -38,7 +38,7 @@ let runsteptoken2 = 'token=ed6fa55c-6fab-46fd-a7a8-072bd82a5ca4';
 let runsteptoken3 = 'token=cead7f16-5563-41c3-95b7-bd695f6c4073';
 let runsteptoken4 = 'token=949e433b-ba63-4e9a-bed6-672620ffd554';
 let runsteptoken5 = 'token=21b64647-3c65-435d-a447-8f4b51049b08';
-const runsteptokenArr = [ runsteptoken2,runsteptoken3, runsteptoken4, runsteptoken5];
+const runsteptokenArr = [ runsteptoken4, runsteptoken5];
 let runsteptokenVal = "";
 
 //let runstepkey1 = '{"Accept-Encoding":"gzip, deflate, br","Cookie":"dcck_${runsteptoken1}; dcck_uid=75261","Connection":"keep-alive","Accept":"*/*","Host":"runstep.kujievip.com","User-Agent":"zou lu zhuan qian/1.5.2 (iPhone; iOS 14.4.1; Scale/2.00)","Accept-Language":"zh-Hans-CN;q=1"}';
@@ -46,7 +46,7 @@ let runstepkey2 = '{"Accept-Encoding":"gzip, deflate, br","Cookie":"dcck_${runst
 let runstepkey3 = '{"Accept-Encoding":"gzip, deflate, br","Cookie":"dcck_${runsteptoken3}; dcck_uid=75268","Connection":"keep-alive","Accept":"*/*","Host":"runstep.kujievip.com","User-Agent":"zou lu zhuan qian/1.5.2 (iPhone; iOS 14.4.1; Scale/2.00)","Accept-Language":"zh-Hans-CN;q=1"}';
 let runstepkey4 = '{"Accept-Encoding":"gzip, deflate, br","Cookie":"dcck_${runsteptoken4}; dcck_uid=75295","Connection":"keep-alive","Accept":"*/*","Host":"runstep.kujievip.com","User-Agent":"zou lu zhuan qian/1.5.2 (iPhone; iOS 14.4.1; Scale/2.00)","Accept-Language":"zh-Hans-CN;q=1"}';
 let runstepkey5 = '{"Accept-Encoding":"gzip, deflate, br","Cookie":"dcck_${runsteptoken5}; dcck_uid=75308","Connection":"keep-alive","Accept":"*/*","Host":"runstep.kujievip.com","User-Agent":"zou lu zhuan qian/1.5.2 (iPhone; iOS 14.4.1; Scale/2.00)","Accept-Language":"zh-Hans-CN;q=1"}';
-const runstepkeyArr = [runstepkey2,runstepkey3,runstepkey4,runstepkey5];
+const runstepkeyArr = [runstepkey4,runstepkey5];
 let runstepkeyVal = "";
 
 
@@ -55,7 +55,7 @@ let txtoken2 = 'wx24b0a18acccfce83&platform';
 let txtoken3 = 'wx24b0a18acccfce83&platform';
 let txtoken4 = 'wx24b0a18acccfce83&platform';
 let txtoken5 = 'wx24b0a18acccfce83&platform';
-const txtokenArr = [txtoken2,txtoken3,txtoken4,txtoken5];
+const txtokenArr = [txtoken4,txtoken5];
 let txtokenVal = "";
 
 
@@ -70,7 +70,7 @@ let txkey2 = runstepkey2;
 let txkey3 = runstepkey3;
 let txkey4 = runstepkey4;
 let txkey5 = runstepkey5;
-const txkeyArr = [txkey2,txkey3,txkey4,txkey5];
+const txkeyArr = [txkey4,txkey5];
 let txkeyVal = "";
 
 
